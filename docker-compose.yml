@@ -1,0 +1,38 @@
+version: '3'
+
+networks:
+    pathfinder_default:
+      external: true
+    internal:
+      external: false
+
+services:
+    db:
+        image: mysql:5.7
+        volumes:
+            - database:/var/lib/mysql
+            - ./config/start.sql:/docker-entrypoint-initdb.d/start.sql
+            - ./config/eve_universe.sql:/docker-entrypoint-initdb.d/eve_universe.sql
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+
+    pathfinder:
+        # build:
+        #   context: .
+        #   dockerfile: Dockerfile
+        restart: always
+        image: stevet3hpirate/pathfinder:latest
+        env_file: .env
+        # Traefik Labels
+        labels:
+          - traefik.backend=pathfinder
+          - traefik.frontend.rule=Host:pathfinder.(YourDomain)
+          - traefik.docker.network=pathfinder_default
+          - traefik.port=80
+        networks:
+          - internal
+          - pathfinder_default
+
+volumes:
+    database: {}
