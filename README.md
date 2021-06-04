@@ -1,4 +1,5 @@
 [![Docker Build](https://github.com/SteveTh3Piirate/pathfinder-docker/actions/workflows/CIActions.yml/badge.svg?branch=master)](https://github.com/SteveTh3Piirate/pathfinder-docker/actions/workflows/CIActions.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Dockerfile for running [Pathfinder](https://github.com/exodus4d/pathfinder), the mapping tool for EVE Online.
 
