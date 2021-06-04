@@ -1,4 +1,5 @@
 ![Tag](https://img.shields.io/badge/Pathfinder-v2.0-brightgreen)
+![TAG](https://img.shields.io/badge/Traefik-v1.7.21-blue)
 [![Docker Build](https://github.com/SteveTh3Piirate/pathfinder-docker/actions/workflows/CIActions.yml/badge.svg?branch=master)](https://github.com/SteveTh3Piirate/pathfinder-docker/actions/workflows/CIActions.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
