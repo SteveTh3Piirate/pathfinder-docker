@@ -22,7 +22,7 @@ services:
         #   context: .
         #   dockerfile: Dockerfile
         restart: always
-        image: stevet3hpirate/pathfinder:latest
+        image: steveth3piirate/pathfinder:latest
         env_file: .env
         # Traefik Labels
         labels:
