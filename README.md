@@ -1,3 +1,5 @@
+[![Docker Build](https://github.com/SteveTh3Piirate/pathfinder-docker/actions/workflows/CIActions.yml/badge.svg?branch=master)](https://github.com/SteveTh3Piirate/pathfinder-docker/actions/workflows/CIActions.yml)
+
 Dockerfile for running [Pathfinder](https://github.com/exodus4d/pathfinder), the mapping tool for EVE Online.
 
 Traefik 1.7 Installation
