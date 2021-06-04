@@ -169,62 +169,83 @@ In the docker image the dedfault character_set_server is set to latin 1, here i 
 2. Make sure to update packages as we will need to install nano so ```apt-get install update```
 3. Next install nano ```apt-get install nano```
 4. Now cd to the mysqld.conf which should be ```cd /etc/mysql/mysql.conf.d/```
-5. Now ```nano mysqld.conf``` Scroll down to the bottom and add the following to lines on their own line
-
-```skip-character-set-client-handshake```
-
-```character-set-server=utf8mb4```
+5. Now ```nano mysqld.conf``` 
+6. Scroll down to the bottom and add the following to lines on their own line
+```
+skip-character-set-client-handshake
+character-set-server=utf8mb4
+```
 
 7. now ctrl+x save the buffer and then exit, now we need to restart mysql with the following
 8. ```service mysql restart```
 9. refresh your page and note that latin1 has now been replaced with the correct type.
 
-# Intalling Event extension
+# Intalling Event extension - Can Break Install at Your Own Risk!
 1. In the cli type ```docker exec pathfinder_pathfinder_1 -it /bin/bash``` or whatever your docker host name may be.
 2. update packages by ```sudo apt-get update```
 3. Follow the below Text to install the EventLibrary which will install Event Extension 3.0.4 for Php 7.2
-```apt-get install php7.2-dev```
-
-```apt-get install libevent-dev```
+```
+apt-get install php7.2-dev
+```
+```
+apt-get install libevent-dev
+```
 
 # Install extensions
-```pecl install ev```
-
-```pecl install event```
+```
+pecl install ev
+```
+```
+pecl install event
+```
 
 # Create configurations
-```sudo echo 'extension=ev.so' > /etc/php/7.2/mods-available/ev.ini```
-
-```sudo echo 'extension=event.so' > /etc/php/7.2/mods-available/event.ini```
-
+```
+sudo echo 'extension=ev.so' > /etc/php/7.2/mods-available/ev.ini
+```
+```
+sudo echo 'extension=event.so' > /etc/php/7.2/mods-available/event.ini
+```
 
 # Create symlinks
-```sudo ln -s /etc/php/7.2/mods-available/ev.ini /etc/php/7.2/fpm/conf.d/20-ev.ini```
-
-```sudo ln -s /etc/php/7.2/mods-available/ev.ini /etc/php/7.2/cli/conf.d/20-ev.ini```
-
-```sudo ln -s /etc/php/7.2/mods-available/event.ini /etc/php/7.2/fpm/conf.d/20-event.ini```
-
-```sudo ln -s /etc/php/7.2/mods-available/event.ini /etc/php/7.2/cli/conf.d/20-event.ini```
-
+```
+sudo ln -s /etc/php/7.2/mods-available/ev.ini /etc/php/7.2/fpm/conf.d/20-ev.ini
+```
+```
+sudo ln -s /etc/php/7.2/mods-available/ev.ini /etc/php/7.2/cli/conf.d/20-ev.ini
+```
+```
+sudo ln -s /etc/php/7.2/mods-available/event.ini /etc/php/7.2/fpm/conf.d/20-event.ini
+```
+```
+sudo ln -s /etc/php/7.2/mods-available/event.ini /etc/php/7.2/cli/conf.d/20-event.ini
+```
 
 # Optional - libevent
 ##WANRING! Segmentation fault on PHP 7.2.11-1+ubuntu18.04.1+deb.sury.org+1 (cli) (built: Oct 24 2019 18:23:23) ( NTS ) ##
 
-```sudo echo 'extension=libevent.so' > /etc/php/7.2/mods-available/libevent.ini```
-
-```sudo ln -s /etc/php/7.2/mods-available/libevent.ini /etc/php/7.2/fpm/conf.d/20-libevent.ini```
-
-```sudo ln -s /etc/php/7.2/mods-available/libevent.ini /etc/php/7.2/cli/conf.d/20-libevent.ini```
+```
+sudo echo 'extension=libevent.so' > /etc/php/7.2/mods-available/libevent.ini
+```
+```
+sudo ln -s /etc/php/7.2/mods-available/libevent.ini /etc/php/7.2/fpm/conf.d/20-libevent.ini
+```
+```
+sudo ln -s /etc/php/7.2/mods-available/libevent.ini /etc/php/7.2/cli/conf.d/20-libevent.ini
+```
 
 # Check modules loaded:
 
-```php -i | grep -i ev```
-
-```php -i | grep -i event```
-
+```
+php -i | grep -i ev
+```
+```
+php -i | grep -i event
+```
 
 # Restart FPM
-```sudo service php7.2-fpm restart```
+```
+sudo service php7.2-fpm restart
+```
 
 During Refresh of setup page you will see an error, dont panic! Refresh your Pathfinder Setup page a few times and you should see the event library installed to 3.0.4
