@@ -163,7 +163,7 @@ nano php.ini
 # Database character_set_server adjustment
 In the docker image the dedfault character_set_server is set to latin 1, here i will tell you how to adjust it to utf8mb4.
 
-1. exec into the docker containing the db in my case its ```docker exec pathinfder_db_1 -it /bin/bash```
+1. exec into the docker containing the db in my case its ```docker exec -it pathinfder_db_1 /bin/bash```
 2. Make sure to update packages as we will need to install nano so ```apt-get install update```
 3. Next install nano ```apt-get install nano```
 4. Now cd to the mysqld.conf which should be ```cd /etc/mysql/mysql.conf.d/```
@@ -179,7 +179,7 @@ character-set-server=utf8mb4
 9. refresh your page and note that latin1 has now been replaced with the correct type.
 
 # Intalling Event extension - Can Break Install. Install at Your Own Risk!
-1. In the cli type ```docker exec pathfinder -it /bin/bash``` or whatever your docker host name may be.
+1. In the cli type ```docker exec -it pathfinder /bin/bash``` or whatever your docker host name may be.
 2. update packages by ```sudo apt-get update```
 3. Follow the below Text to install the EventLibrary which will install Event Extension 3.0.4 for Php 7.2
 ```
