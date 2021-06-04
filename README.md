@@ -110,16 +110,57 @@ You may need to create the databases for your MYSQL image if using a fresh compo
 3. [Import static database.](#Importing-static-database)
 4. Import from ESI at the Cronjob section of the setup page.
 5. Build Systems data index under `Build search index` in the Administration section of the setup page.
-5. Restart your container with `SETUP=False`.
-6. You're live!
+6. At the bottom after your databases are build and filled scroll down and import static data. Since v2.0 manual imports through .zip are no longer necessary.
+7. You're live!
 
-# Importing static database
-1. `sudo wget https://github.com/exodus4d/pathfinder/raw/master/export/sql/eve_universe.sql.zip`
-2. `sudo unzip eve_universe.sql.zip`
-3. `sudo docker cp eve_universe.sql "$(sudo docker-compose ps | grep db | awk '{ print $1}'):/eve_universe.sql"`
-4. `sudo docker-compose exec db sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD" eve_universe < /eve_universe.sql'`
-5. **Optional** `sudo rm eve_universe.sql*`
-6. [Complete Setup.](#Setup)
+
+# Securing the Setup Page
+1. Exec into the pathfinder docker with ```docker exec -it pathfinder /bin/bash```
+2. install apache2-utils ```apt-get install apache2-utils```
+3. ```apt-get update && apt-get install nano```
+4. now ```cd /etc/nginx/sites-enabled/```
+5. ```nano default``` And scroll all the way to the bottom and add this next block of code to the file. 
+```
+location /setup {
+   auth_basic "Setup Login";
+   auth_basic_user_file /etc/nginx/.setup_pass;
+   try_files $uri $uri/ /index.php?$query_string;
+  } 
+  ```
+6. Now create the user/pass for the setup page with the following. Change the Username!
+``` 
+htpasswd -c /etc/nginx/.setup_pass (YourUsername)
+```
+7. Removing the Setup Warning.
+```
+cd /var/www/pathfinder/app/
+``` 
+8. Nano into pathfinder.ini `nano pathfinder.ini`
+9. Scroll down until you see `SHOW_SETUP_WARNING          =   1` Simply Change the 1 to 0. 
+10. Now your SetUp page is secure and you wont have a warning all the time. 
+11. In future you'd get to the setup page with /setup at the end of your chosen link pathfinder.yourdomain.com/setup
+
+
+# Correcting HTML_Errors Warning
+1. exec into the pathfinder docker container 
+```
+docker exec -it pathfinder /bin/bash
+```
+2.
+```
+apt-get update && apt-get install nano
+```
+3. cd into the php directory with 
+```
+cd /etc/php/7.2/fpm/
+```
+4. Nano into the php.ini with
+``` 
+nano php.ini
+```
+5. ctrl+w and search for the first ```html_errors``` and turn the "on" to "off" and search for the next ```html_errors``` and do the same as prior.
+6. restart fpm service with ```service php7.2-fpm restart```
+7. Check on the setup page that hmtl errors is marked as a 0 instead of a 1. 
 
 # Database character_set_server adjustment
 In the docker image the dedfault character_set_server is set to latin 1, here i will tell you how to adjust it to utf8mb4.
@@ -137,7 +178,6 @@ In the docker image the dedfault character_set_server is set to latin 1, here i 
 7. now ctrl+x save the buffer and then exit, now we need to restart mysql with the following
 8. ```service mysql restart```
 9. refresh your page and note that latin1 has now been replaced with the correct type.
-
 
 # Intalling Event extension
 1. In the cli type ```docker exec pathfinder_pathfinder_1 -it /bin/bash``` or whatever your docker host name may be.
