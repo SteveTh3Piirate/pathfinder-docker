@@ -178,8 +178,8 @@ character-set-server=utf8mb4
 8. ```service mysql restart```
 9. refresh your page and note that latin1 has now been replaced with the correct type.
 
-# Intalling Event extension - Can Break Install at Your Own Risk!
-1. In the cli type ```docker exec pathfinder_pathfinder_1 -it /bin/bash``` or whatever your docker host name may be.
+# Intalling Event extension - Can Break Install. Install at Your Own Risk!
+1. In the cli type ```docker exec pathfinder -it /bin/bash``` or whatever your docker host name may be.
 2. update packages by ```sudo apt-get update```
 3. Follow the below Text to install the EventLibrary which will install Event Extension 3.0.4 for Php 7.2
 ```
