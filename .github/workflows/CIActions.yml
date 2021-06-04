@@ -33,7 +33,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           username: steveth3piirate
-          password: TuesSoule213191!
+          password: 2ad7c64c-7243-4172-8c5b-d47c31d7e154
       -
         name: Build and push
         uses: docker/build-push-action@v2
