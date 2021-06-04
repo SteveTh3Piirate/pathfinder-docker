@@ -2,28 +2,20 @@
 
 Dockerfile for running [Pathfinder](https://github.com/exodus4d/pathfinder), the mapping tool for EVE Online.
 
+#Do NOT blindly copy and paste, change the values you need to change!
+
 Traefik 1.7 Installation
-
 Websocket server support.
-
 Added Event Extension Installation Guide
-
 Added guide to change - character_set_server = latin1 to character_set_server = utf8mb4
 
 # Traefik v1.7.21 Setup
-Do NOT blindly copy and paste, change the values you need to change!
-
 1. ```sudo apt install -y httpd-tools```
-
 2. ```htpasswd -nb admin secure_password```
-
 3. Save the Output given for the Above, You'll need this in Step 7. It should look like this:
-   ```admin:$apr1$kEG/8JKj$yEXj8vKO7HDvkUMI/SbOO.```
-  
+   ```admin:$apr1$kEG/8JKj$yEXj8vKO7HDvkUMI/SbOO.``` 
 4. Make a Directory for Trafik and ``cd`` into it. 
-
 5. ```nano traefik.toml```
-
 6. Paste the above Admin Secure Password in the `users = ["admin:your_encrypted_password"]` section: Keep quotations just replace the `(Your_Encrypted_Password)`
   Replace `"your_domain"` with your domain, keep quotations. 
 ```
