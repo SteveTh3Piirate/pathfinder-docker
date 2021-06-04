@@ -2,11 +2,14 @@
 
 Dockerfile for running [Pathfinder](https://github.com/exodus4d/pathfinder), the mapping tool for EVE Online.
 
-#Do NOT blindly copy and paste, change the values you need to change!
+# Do NOT blindly copy and paste, change the values you need to change!
 
 Traefik 1.7 Installation
+
 Websocket server support.
+
 Added Event Extension Installation Guide
+
 Added guide to change - character_set_server = latin1 to character_set_server = utf8mb4
 
 # Traefik v1.7.21 Setup
