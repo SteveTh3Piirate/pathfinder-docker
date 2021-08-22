@@ -89,7 +89,9 @@ docker run -d \
 sudo wget https://raw.githubusercontent.com/SteveTh3Piirate/pathfinder-docker/master/docker-compose.yml
 ```
 Open the above file using a text editor and go down to line 31 and edit the label `- traefik.frontend.rule=Host:`
+
 It will currently show as `- traefik.frontend.rule=Host:pathfinder.(YourDomain)`
+
 Edit this to match your actual domain for example `- traefik.frontend.rule=Host:pathfinder.steveth3piirate.com`
 
 2. Clone the example `.env` file
