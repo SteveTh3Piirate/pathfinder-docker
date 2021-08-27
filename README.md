@@ -169,7 +169,7 @@ nano php.ini
 # Database character_set_server adjustment
 In the docker image the dedfault character_set_server is set to latin 1, here i will tell you how to adjust it to utf8mb4.
 
-1. exec into the docker containing the db in my case its ```docker exec -it pathinfder_db_1 /bin/bash```
+1. exec into the docker containing the db in my case its ```docker exec -it pathfinder_db_1 /bin/bash```
 2. Make sure to update packages as we will need to install nano so ```apt-get install update```
 3. Next install nano ```apt-get install nano```
 4. Now cd to the mysqld.conf which should be ```cd /etc/mysql/mysql.conf.d/```
